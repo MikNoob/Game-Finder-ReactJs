@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import {FaSearch} from 'react-icons/fa'
+import {setSearchQuery} from './action'
 import './style.css'
 
-let Header = () => {
+let Header = ({dispatch}) => {
     let [input, setInput] = useState('')
 
     let handleInput = e => {
@@ -12,8 +15,10 @@ let Header = () => {
 
     let handleSubmit = e => {
         if(e.key === 'Enter' || e.type === 'click')
-            if(input.length >= 2)
-                console.log(`Searching for ${input}`)
+            if(input.length >= 2) {
+                dispatch(setSearchQuery(input))
+                setInput(input = '')
+            }
     }
 
     return(
@@ -31,4 +36,8 @@ let Header = () => {
     )
 }
 
-export default Header
+Header.propTypes = {
+    dispatch: PropTypes.func.isRequired
+}
+
+export default connect()(Header)

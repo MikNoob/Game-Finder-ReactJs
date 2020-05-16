@@ -1,0 +1,10 @@
+.GameList--Container {
+    width: 100vw;
+}
+
+.GameList--Loading {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 10%;
+}
