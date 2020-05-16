@@ -16,7 +16,6 @@ let searchGame = async (gameName) => {
     let games = await data.results.map(makeGameObj)
     return {
         next: data.next,
-        previous: data.previous,
         games
     }
 }

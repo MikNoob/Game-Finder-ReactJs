@@ -1,0 +1,21 @@
+.GameCard--Container {
+    max-width: 250px;
+    margin-top: 10px;
+
+    border-radius: 3px;
+    border: 1px solid white;
+}
+
+.GameCard--Container img {
+    width: 100%;
+    height: auto;
+
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.GameCard--Container span {
+    font-size: 1.2rem;
+    color: white;
+    margin-left: 5px;
+}
