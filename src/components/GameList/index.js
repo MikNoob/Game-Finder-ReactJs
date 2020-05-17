@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {searchGame} from '../../utils/api'
+import {searchGame, getGamePage} from '../../utils/api'
 import {clearSearchQuery} from './action'
+import './style.css'
+
 import Loading from '../Loading'
 import GameCard from './GameCard'
-import './style.css'
+import NavButtons from './NavButtons'
 
 let GameList = ({searchQuery, dispatch}) => {
     let [apiState, setApiState] = useState('idle')
@@ -23,7 +25,7 @@ let GameList = ({searchQuery, dispatch}) => {
                 // eslint-disable-next-line
                 setGames(games = await data.games)
                 // eslint-disable-next-line
-                setPages(pages = {next: data.next, prev: data.previous})
+                setPages(pages = {next: data.next, prev: data.prev})
 
                 setApiState(apiState = 'idle')
                 dispatch(clearSearchQuery())
@@ -32,6 +34,16 @@ let GameList = ({searchQuery, dispatch}) => {
         }
 
     }, [searchQuery])
+
+    let changePage = async url => {
+        setApiState(apiState = 'fetching')
+
+        let data = await getGamePage(url)
+        setGames(games = await data.games)
+        setPages(pages = {next: data.next, prev: data.prev})
+
+        setApiState(apiState = 'idle')
+    }
 
     let makeGameCard = game => <GameCard key={game.id} {...game} />
 
@@ -45,13 +57,7 @@ let GameList = ({searchQuery, dispatch}) => {
                 {games.map(makeGameCard)}
 
                 {games.length !== 0
-                ?
-                (
-                    <div className='GameList--PagesBtns'>
-                        <button disabled={pages.prev !== undefined ? false : true}>Prev.</button>
-                        <button disabled={pages.next !== undefined ? false : true}>Next</button>
-                    </div>
-                )
+                ? <NavButtons changePageFunc={changePage} {...pages}/>
                 : null
                 }
 

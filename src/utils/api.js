@@ -16,8 +16,20 @@ let searchGame = async (gameName) => {
     let games = await data.results.map(makeGameObj)
     return {
         next: data.next,
+        prev: data.previous,
         games
     }
 }
 
-export {searchGame}
+let getGamePage = async url => {
+    let resp = await fetch(url)
+    let data = await resp.json()
+    let games = await data.results.map(makeGameObj)
+    return {
+        next: data.next,
+        prev: data.previous,
+        games
+    }
+}
+
+export {searchGame, getGamePage}

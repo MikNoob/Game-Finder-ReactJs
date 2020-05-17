@@ -1,0 +1,16 @@
+.NavButtons--Container {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.NavButtons--Container button {
+    width: 65px;
+    height: 35px;
+
+    border: 0px;
+    border-radius: 5px;
+    color: white;
+    background-color: grey;
+}
