@@ -53,14 +53,17 @@ let GameList = ({searchQuery, dispatch}) => {
             ? <div className='GameList--Loading'> <Loading/> </div>
             : 
             (
-            <div className='GameList--List'> 
-                {games.map(makeGameCard)}
+            <div>
+                <div className='GameList--List'> 
+                    {games.map(makeGameCard)}
+                </div>
 
-                {games.length !== 0
-                ? <NavButtons changePageFunc={changePage} {...pages}/>
-                : null
-                }
-
+                <div>
+                    {games.length !== 0
+                    ? <NavButtons changePageFunc={changePage} {...pages}/>
+                    : null
+                    }
+                </div>
             </div>
             )
             }

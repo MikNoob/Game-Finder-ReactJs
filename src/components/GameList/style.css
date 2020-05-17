@@ -10,9 +10,34 @@
 }
 
 .GameList--List {
-    margin-bottom: 20px;
+    margin: 20px 0;
 
     display: flex;
     flex-flow: column wrap;
     align-content: center;
+}
+
+@media (min-width: 768px) {
+    .GameList--Container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .GameList--List {
+        display: grid;
+        grid-template-columns: repeat(2, 250px);
+        grid-gap: 0 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .GameList--List {
+        grid-template-columns: repeat(3, 250px)
+    }
+}
+
+@media (min-width: 1440px) {
+    .GameList--List {
+        grid-template-columns: repeat(4, 250px)
+    }
 }
